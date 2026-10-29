@@ -7,6 +7,11 @@
 	<meta name="description" content="Issabel Admin" />
 	<meta name="theme-color" content="#f8fafc" />
 
+	<!-- جلوگیری از کش شدن صفحه تا کپچا در هر رفرش تغییر کند -->
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+
 	<title>365voip - {$PAGE_NAME}</title>
 
 	<!-- فونت وزیرمتن -->
@@ -21,11 +26,8 @@
 		   پایه و فونت
 		   ============================================================ */
 		*, *::before, *::after { box-sizing: border-box; }
-
 		html, body { height: 100%; }
-
 		html { font-family: 'Vazirmatn', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif; }
-
 		body, input, button, textarea, select {
 			font-family: 'Vazirmatn', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif !important;
 		}
@@ -42,7 +44,6 @@
 			overflow-x: hidden;
 		}
 
-		/* الگوی نقطه‌ای ظریف پس‌زمینه */
 		body.login-page::before {
 			content: '';
 			position: fixed;
@@ -61,44 +62,34 @@
 		.bento-grid {
 			display: grid;
 			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 12px;
+			gap: 10px;
 		}
-
 		.bento-cell {
 			background: #ffffff;
 			border: 1px solid rgba(15, 23, 42, .07);
-			border-radius: 22px;
+			border-radius: 20px;
 			position: relative;
 			overflow: hidden;
 		}
-
 		.bento-cell--full { grid-column: 1 / -1; }
-
 		.bento-cell--accent {
 			background: linear-gradient(135deg, #eef2ff 0%, #ecfeff 100%);
 			border-color: rgba(99, 102, 241, .15);
 		}
 
 		/* ============================================================
-		   لوگوی پالسی متحرک (SVG + CSS)
+		   لوگوی پالسی متحرک (کوچک و افقی)
 		   ============================================================ */
 		.pulse-wrap {
 			position: relative;
-			width: 132px;
-			height: 132px;
-			margin: 0 auto;
+			width: 60px;
+			height: 60px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			flex-shrink: 0;
 		}
-
-		.pulse-svg {
-			width: 100%;
-			height: 100%;
-			display: block;
-			overflow: visible;
-		}
-
+		.pulse-svg { width: 100%; height: 100%; display: block; overflow: visible; }
 		.pulse-ring {
 			fill: none;
 			stroke: #6366f1;
@@ -106,104 +97,80 @@
 			transform-origin: 70px 70px;
 			animation: pulseRing 3.6s cubic-bezier(.25, .6, .35, 1) infinite;
 		}
-
 		.pulse-ring--2 { stroke: #8b5cf6; animation-delay: 1.2s; }
 		.pulse-ring--3 { stroke: #06b6d4; animation-delay: 2.4s; }
-
 		@keyframes pulseRing {
 			0%   { transform: scale(0.72); opacity: .85; }
 			70%  { opacity: .18; }
 			100% { transform: scale(1.9); opacity: 0; }
 		}
-
 		.pulse-core {
 			transform-origin: 70px 70px;
 			animation: pulseCore 2.2s ease-in-out infinite;
-			filter: drop-shadow(0 0 0 transparent);
 		}
-
 		@keyframes pulseCore {
 			0%, 100% { transform: scale(1); }
 			50%      { transform: scale(1.06); }
 		}
-
 		.pulse-halo {
 			transform-origin: 70px 70px;
 			animation: haloRotate 9s linear infinite;
 		}
-
-		@keyframes haloRotate {
-			to { transform: rotate(360deg); }
-		}
+		@keyframes haloRotate { to { transform: rotate(360deg); } }
 
 		/* ============================================================
 		   فیلدهای فرم
 		   ============================================================ */
 		.field-input {
 			width: 100%;
-			padding: 14px 46px 14px 46px;
+			padding: 12px 42px 12px 42px;
 			background: #f8fafc;
 			border: 1px solid #e2e8f0;
-			border-radius: 14px;
+			border-radius: 12px;
 			color: #0f172a;
-			font-size: .95rem;
+			font-size: .9rem;
 			outline: none;
 			transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
 		}
-
 		.field-input::placeholder { color: #94a3b8; }
-
 		.field-input:hover { border-color: #cbd5e1; }
-
 		.field-input:focus {
 			background: #ffffff;
 			border-color: #6366f1;
-			box-shadow: 0 0 0 4px rgba(99, 102, 241, .12);
+			box-shadow: 0 0 0 3px rgba(99, 102, 241, .12);
 		}
-
-		.field-input:-webkit-autofill,
-		.field-input:-webkit-autofill:hover,
-		.field-input:-webkit-autofill:focus {
-			-webkit-text-fill-color: #0f172a;
-			-webkit-box-shadow: 0 0 0 1000px #ffffff inset;
-			transition: background-color 5000s ease-in-out 0s;
-		}
-
 		.field-icon {
 			position: absolute;
 			top: 50%;
-			right: 14px;
+			right: 12px;
 			transform: translateY(-50%);
 			color: #94a3b8;
 			pointer-events: none;
 			display: flex;
 			transition: color .2s ease;
 		}
-
-		.field-icon svg { width: 19px; height: 19px; display: block; }
-
+		.field-icon svg { width: 18px; height: 18px; display: block; }
 		.field-group:focus-within .field-icon { color: #6366f1; }
 
 		.toggle-pass {
 			position: absolute;
 			top: 50%;
-			left: 8px;
+			left: 6px;
 			transform: translateY(-50%);
-			width: 34px;
-			height: 34px;
+			width: 32px;
+			height: 32px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			background: transparent;
 			border: 0;
-			border-radius: 10px;
+			border-radius: 8px;
 			color: #94a3b8;
 			cursor: pointer;
 			transition: color .2s ease, background .2s ease;
 		}
-
 		.toggle-pass:hover { color: #475569; background: #f1f5f9; }
-		.toggle-pass svg { width: 18px; height: 18px; display: block; }
+		.toggle-pass svg { width: 16px; height: 16px; display: block; }
 		.toggle-pass .eye-off { display: none; }
 		.toggle-pass.is-visible .eye-open { display: none; }
 		.toggle-pass.is-visible .eye-off { display: block; }
@@ -213,37 +180,30 @@
 		   ============================================================ */
 		.btn-login {
 			width: 100%;
-			padding: 14px 18px;
+			padding: 13px 18px;
 			border: 0;
-			border-radius: 14px;
+			border-radius: 12px;
 			cursor: pointer;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			gap: 9px;
+			gap: 8px;
 			font-family: inherit;
-			font-size: .98rem;
+			font-size: .95rem;
 			font-weight: 700;
 			color: #ffffff;
 			background: linear-gradient(135deg, #6366f1 0%, #7c3aed 55%, #0891b2 100%);
 			background-size: 180% 180%;
 			transition: transform .2s ease, background-position .5s ease, box-shadow .2s ease;
 		}
-
-		.btn-login svg { width: 19px; height: 19px; }
-
+		.btn-login svg { width: 18px; height: 18px; }
 		.btn-login:hover {
 			transform: translateY(-1px);
 			background-position: 100% 50%;
 			box-shadow: 0 6px 18px -8px rgba(99, 102, 241, .7);
 		}
-
 		.btn-login:active { transform: translateY(0) scale(.995); }
-
-		.btn-login:focus-visible {
-			outline: 2px solid #6366f1;
-			outline-offset: 3px;
-		}
+		.btn-login:focus-visible { outline: 2px solid #6366f1; outline-offset: 3px; }
 
 		/* ============================================================
 		   خطا
@@ -253,16 +213,14 @@
 			background: #fef2f2;
 			border: 1px solid #fecaca;
 			color: #b91c1c;
-			padding: 11px 14px;
-			border-radius: 14px;
-			font-size: .84rem;
+			padding: 10px 12px;
+			border-radius: 12px;
+			font-size: .82rem;
 			text-align: center;
-			line-height: 1.7;
+			line-height: 1.6;
 			animation: shake .45s ease;
 		}
-
-		.form-login-error h3 { font-size: .88rem; font-weight: 600; }
-
+		.form-login-error h3 { font-size: .86rem; font-weight: 600; }
 		@keyframes shake {
 			0%, 100% { transform: translateX(0); }
 			25%      { transform: translateX(-6px); }
@@ -276,19 +234,16 @@
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			width: 42px;
-			height: 42px;
-			border-radius: 13px;
+			width: 34px;
+			height: 34px;
+			border-radius: 10px;
 			border: 1px solid #e2e8f0;
 			background: #ffffff;
 			color: #475569;
 			transition: transform .2s ease, border-color .2s ease, color .2s ease, background .2s ease;
 		}
-
-		.social-btn svg { width: 20px; height: 20px; display: block; }
-
+		.social-btn svg { width: 16px; height: 16px; display: block; }
 		.social-btn:hover { transform: translateY(-2px); }
-
 		.social-btn--telegram:hover { color: #229ED9; border-color: #229ED9; background: #f0f9ff; }
 		.social-btn--whatsapp:hover { color: #25D366; border-color: #25D366; background: #f0fdf4; }
 		.social-btn--bale:hover     { color: #16a34a; border-color: #16a34a; background: #f0fdf4; }
@@ -299,19 +254,17 @@
 		.date-chip {
 			display: inline-flex;
 			align-items: center;
-			gap: 7px;
-			font-size: .82rem;
+			gap: 6px;
+			font-size: .78rem;
 			color: #4338ca;
 			font-weight: 500;
 		}
-
-		.date-chip svg { width: 15px; height: 15px; opacity: .8; }
-
+		.date-chip svg { width: 14px; height: 14px; opacity: .8; }
 		.date-time {
 			display: inline-flex;
 			align-items: center;
-			gap: 6px;
-			font-size: .82rem;
+			gap: 5px;
+			font-size: .78rem;
 			color: #0e7490;
 			font-weight: 500;
 			font-variant-numeric: tabular-nums;
@@ -327,13 +280,10 @@
 		.bento-grid > .bento-cell:nth-child(2) { animation-delay: .08s; }
 		.bento-grid > .bento-cell:nth-child(3) { animation-delay: .14s; }
 		.bento-grid > .bento-cell:nth-child(4) { animation-delay: .20s; }
-		.bento-grid > .bento-cell:nth-child(5) { animation-delay: .26s; }
-
 		@keyframes cellIn {
 			from { opacity: 0; transform: translateY(14px); }
 			to   { opacity: 1; transform: translateY(0); }
 		}
-
 		@media (prefers-reduced-motion: reduce) {
 			*, *::before, *::after {
 				animation-duration: .01ms !important;
@@ -341,53 +291,158 @@
 				transition-duration: .01ms !important;
 			}
 		}
-		
+
 		/* ============================================================
-		   المان‌های نوری مات و بلور متحرک (Glass Blobs)
+		   المان‌های نوری مات و بلور متحرک
 		   ============================================================ */
 		.bg-blobs {
 			position: fixed;
 			inset: 0;
 			overflow: hidden;
-			pointer-events: none; 
-			z-index: 1; 
+			pointer-events: none;
+			z-index: 1;
 		}
-
-		/* پوشش برای انیمیشن‌های خودکار CSS */
-		.blob-wrapper {
-			position: absolute;
-			will-change: transform;
-		}
-
-		/* هسته نور که با موس حرکت می‌کند */
-		.blob {
-			border-radius: 50%;
-			filter: blur(80px); /* افکت مات و شیشه‌ای */
-			opacity: 0.65;
-			will-change: transform;
-		}
-
-		/* تعریف رنگ‌ها و ابعاد */
+		.blob-wrapper { position: absolute; will-change: transform; }
+		.blob { border-radius: 50%; filter: blur(80px); opacity: 0.65; will-change: transform; }
 		.blob-1 { width: 450px; height: 450px; background: radial-gradient(circle, #818cf8 0%, rgba(129, 140, 248, 0) 70%); }
 		.blob-2 { width: 550px; height: 550px; background: radial-gradient(circle, #22d3ee 0%, rgba(34, 211, 238, 0) 70%); }
 		.blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #c084fc 0%, rgba(192, 132, 252, 0) 70%); }
 		.blob-4 { width: 350px; height: 350px; background: radial-gradient(circle, #f472b6 0%, rgba(244, 114, 182, 0) 70%); }
-		/* رنگ نارنجی */
 		.blob-5 { width: 480px; height: 480px; background: radial-gradient(circle, #f97316 0%, rgba(249, 115, 22, 0) 70%); }
-
-		/* موقعیت‌دهی و انیمیشن‌های خودکار (حرکت آرام در پس‌زمینه) */
 		.wrapper-1 { top: -10%; left: -10%; animation: move1 15s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
 		.wrapper-2 { bottom: -20%; right: -10%; animation: move2 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
 		.wrapper-3 { top: 40%; left: 40%; animation: move3 18s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
 		.wrapper-4 { top: 60%; left: 10%; animation: move4 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
 		.wrapper-5 { bottom: 15%; left: 25%; animation: move5 22s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
-
 		@keyframes move1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(150px, 100px) scale(1.2); } }
 		@keyframes move2 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-150px, -100px) scale(1.3); } }
 		@keyframes move3 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-100px, 150px) scale(0.8); } }
 		@keyframes move4 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(200px, -50px) scale(1.1); } }
 		@keyframes move5 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-80px, -120px) scale(1.15); } }
-		
+
+		/* ============================================================
+		   کپچا
+		   ============================================================ */
+		.captcha-row {
+			display: flex;
+			align-items: stretch;
+			gap: 8px;
+		}
+		.captcha-input {
+			flex: 1 1 auto;
+			min-width: 0;
+			padding: 12px 16px !important;
+			text-align: center;
+			font-size: 1.1rem !important;
+			font-weight: 700;
+			letter-spacing: 2px;
+			font-variant-numeric: tabular-nums;
+			direction: ltr;
+		}
+		.captcha-visual {
+			flex: 0 0 auto;
+			display: flex;
+			align-items: center;
+			gap: 4px;
+			padding: 3px;
+			background: #ffffff;
+			border: 1px solid #e2e8f0;
+			border-radius: 12px;
+			transition: border-color .2s ease;
+		}
+		.captcha-visual:hover { border-color: #cbd5e1; }
+		.captcha-visual canvas {
+			display: block;
+			border-radius: 8px;
+			cursor: pointer;
+			user-select: none;
+			-webkit-user-select: none;
+			touch-action: manipulation;
+		}
+		.captcha-refresh {
+			width: 28px;
+			height: 28px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #f8fafc;
+			border: 0;
+			border-radius: 8px;
+			color: #64748b;
+			cursor: pointer;
+			transition: background .2s ease, color .2s ease, transform .35s ease;
+		}
+		.captcha-refresh:hover { background: #eef2ff; color: #6366f1; }
+		.captcha-refresh:active { transform: rotate(180deg); }
+		.captcha-refresh svg { width: 15px; height: 15px; display: block; }
+		.captcha-error-msg {
+			display: none;
+			color: #b91c1c;
+			font-size: .76rem;
+			margin-top: 4px;
+			text-align: center;
+			font-weight: 500;
+		}
+		.captcha-error-msg.show {
+			display: block;
+			animation: shake .45s ease;
+		}
+
+		/* ============================================================
+		   پنل ارتباط با ما (جمع‌شو)
+		   ============================================================ */
+		.contact-toggle {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			padding: 10px 14px;
+			background: transparent;
+			border: 0;
+			cursor: pointer;
+			border-radius: 20px;
+			font-family: inherit;
+			transition: background .2s ease;
+		}
+		.contact-toggle:hover { background: #f8fafc; }
+		.contact-toggle:focus-visible { outline: 2px solid #6366f1; outline-offset: -2px; }
+		.contact-chevron {
+			transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+			flex-shrink: 0;
+		}
+		.contact-toggle[aria-expanded="true"] .contact-chevron {
+			transform: rotate(180deg);
+		}
+		.contact-content {
+			display: grid;
+			grid-template-rows: 0fr;
+			transition: grid-template-rows .35s cubic-bezier(.4, 0, .2, 1);
+		}
+		.contact-content > .contact-inner { overflow: hidden; }
+		.contact-content.is-open { grid-template-rows: 1fr; }
+		.contact-inner-pad { padding: 0 12px 12px; }
+
+		.contact-item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 6px;
+			padding: 7px 8px;
+			border-radius: 10px;
+			background: #f8fafc;
+			border: 1px solid #e2e8f0;
+			color: #475569;
+			text-decoration: none;
+			font-size: .78rem;
+			transition: border-color .2s, color .2s, background .2s, transform .2s;
+		}
+		.contact-item:hover {
+			color: #6366f1;
+			border-color: #c7d2fe;
+			background: #eef2ff;
+			transform: translateY(-1px);
+		}
+		.contact-item svg { width: 14px; height: 14px; flex-shrink: 0; }
 	</style>
 	{/literal}
 
@@ -402,29 +457,24 @@
 		<div class="blob-wrapper wrapper-2"><div class="blob blob-2"></div></div>
 		<div class="blob-wrapper wrapper-3"><div class="blob blob-3"></div></div>
 		<div class="blob-wrapper wrapper-4"><div class="blob blob-4"></div></div>
-		<!-- لایه نارنجی جدید -->
 		<div class="blob-wrapper wrapper-5"><div class="blob blob-5"></div></div>
 	</div>
-	
-	<main class="relative z-10 min-h-screen flex items-center justify-center px-4 py-8">
 
+	<main class="relative z-10 min-h-screen flex items-center justify-center px-4 py-6">
 		<div class="w-full max-w-md">
 
-			<!-- عنوان بالای کارت -->
-			<div class="text-center mb-5">
+			<!-- هدر صفحه -->
+			<div class="text-center mb-4">
 				<h1 class="text-2xl font-bold bg-gradient-to-l from-indigo-600 via-violet-600 to-cyan-600 bg-clip-text text-transparent">
-					VoipTel Pro
+					Issabel
 				</h1>
-				<p class="text-sm text-slate-500 mt-1">ورود به پنل مدیریت</p>
+				<p class="text-xs text-slate-500 mt-0.5">ورود به پنل مدیریت</p>
 			</div>
 
-			<!-- ============================================================
-			     BENTO GRID
-			     ============================================================ -->
 			<div class="bento-grid">
 
-				<!-- ====== سلول تاریخ شمسی (تمام عرض) ====== -->
-				<div class="bento-cell bento-cell--full bento-cell--accent px-5 py-3 flex items-center justify-between flex-wrap gap-2">
+				<!-- تاریخ شمسی و ساعت -->
+				<div class="bento-cell bento-cell--full bento-cell--accent px-4 py-2.5 flex items-center justify-between flex-wrap gap-2">
 					<span class="date-chip">
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
 							<rect x="3" y="4" width="18" height="18" rx="2.5"/>
@@ -432,7 +482,6 @@
 						</svg>
 						<span id="jalaliDate">در حال بارگذاری…</span>
 					</span>
-
 					<span class="date-time">
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
 							<circle cx="12" cy="12" r="9"/>
@@ -442,8 +491,8 @@
 					</span>
 				</div>
 
-				<!-- ====== سلول لوگوی پالسی (تمام عرض) ====== -->
-				<div class="bento-cell bento-cell--full px-5 pt-5 pb-3">
+				<!-- کادر لوگو (تغییر یافته به حالت افقی و کوچک) -->
+				<div class="bento-cell bento-cell--full px-4 py-3 flex items-center justify-center gap-4">
 					<div class="pulse-wrap">
 						<svg class="pulse-svg" viewBox="0 0 140 140" aria-hidden="true">
 							<defs>
@@ -457,39 +506,31 @@
 									<stop offset="100%" stop-color="#a5b4fc" stop-opacity="0"/>
 								</radialGradient>
 							</defs>
-
-							<!-- هاله ملایم -->
 							<circle cx="70" cy="70" r="52" fill="url(#pulseHaloGrad)"/>
-
-							<!-- حلقه‌های پالسی -->
 							<circle class="pulse-ring"              cx="70" cy="70" r="30"/>
 							<circle class="pulse-ring pulse-ring--2" cx="70" cy="70" r="30"/>
 							<circle class="pulse-ring pulse-ring--3" cx="70" cy="70" r="30"/>
-
-							<!-- حلقه چرخان ظریف -->
 							<g class="pulse-halo">
 								<circle cx="70" cy="70" r="42" fill="none" stroke="#c7d2fe" stroke-width="1" stroke-dasharray="3 7"/>
 							</g>
-
-							<!-- هسته -->
 							<circle class="pulse-core" cx="70" cy="70" r="30" fill="url(#pulseCoreGrad)"/>
-
-							<!-- آیکون داخل هسته: خط پالس -->
 							<path d="M46 70 h10 l6 -13 l8 26 l6 -13 h18"
 							      fill="none" stroke="#ffffff" stroke-width="3"
 							      stroke-linecap="round" stroke-linejoin="round"
 							      class="pulse-core"/>
 						</svg>
 					</div>
-
-					<p class="text-center text-xs text-slate-400 mt-1">سیستم آماده ورود</p>
+					<div class="flex flex-col text-right">
+						<span class="text-sm font-semibold text-slate-700">سیستم آماده ورود</span>
+						<span class="text-[.7rem] text-slate-400 mt-0.5">اتصال امن و رمزنگاری شده</span>
+					</div>
 				</div>
 
-				<!-- ====== سلول فرم (تمام عرض) ====== -->
-				<div class="bento-cell bento-cell--full p-5">
+				<!-- فرم ورود + کپچا -->
+				<div class="bento-cell bento-cell--full p-4 sm:p-5">
 
 					{if !empty({$LOGIN_INCORRECT})}
-					<div class="form-login-error mb-4">
+					<div class="form-login-error mb-3">
 						<h3>{$LOGIN_INCORRECT}</h3>
 					</div>
 					{literal}
@@ -540,7 +581,31 @@
 							</button>
 						</div>
 
-						<button type="submit" class="btn-login" name="submit_login">
+						<!-- کپچای ۴ رقمی -->
+						<div>
+							<div class="captcha-row">
+								<input type="text" id="input_captcha" name="input_captcha"
+									class="field-input captcha-input"
+									placeholder="کد امنیتی"
+									inputmode="numeric" maxlength="4"
+									autocomplete="one-time-code" spellcheck="false" required />
+								<div class="captcha-visual">
+									<canvas id="captchaCanvas" width="110" height="42"
+										aria-label="کد امنیتی تصویری"
+										title="برای تغییر کد کلیک کنید"></canvas>
+									<button type="button" class="captcha-refresh" id="captchaRefresh"
+										aria-label="تغییر کد امنیتی" title="تغییر کد">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 12a9 9 0 1 1-3-6.7L21 8"/>
+											<path d="M21 3v5h-5"/>
+										</svg>
+									</button>
+								</div>
+							</div>
+							<p class="captcha-error-msg" id="captchaErrorMsg">کد امنیتی صحیح نیست، لطفاً دوباره تلاش کنید</p>
+						</div>
+
+						<button type="submit" class="btn-login mt-2" name="submit_login">
 							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
 								<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
 								<path d="M10 17l-5-5 5-5"/>
@@ -552,66 +617,64 @@
 					</form>
 				</div>
 
-				<!-- ====== سلول تماس (نصف عرض) ====== -->
-				<div class="bento-cell p-4 flex flex-col justify-center gap-2">
-					<a href="tel:09123456789" class="flex items-center gap-2 text-slate-700 hover:text-indigo-600 transition-colors text-sm">
-						<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600">
+				<!-- ارتباط با ما (جمع‌شو) -->
+				<div class="bento-cell bento-cell--full">
+					<button type="button" class="contact-toggle" id="contactToggle"
+						aria-expanded="false" aria-controls="contactContent">
+						<span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 shrink-0">
 							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
 								<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
 							</svg>
 						</span>
-						<span dir="ltr">09123456789</span>
-					</a>
+						<span class="flex-1 text-right text-sm font-medium text-slate-700">ارتباط با ما</span>
+						<svg class="contact-chevron w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
 
-					<a href="mailto:info@mail.com" class="flex items-center gap-2 text-slate-700 hover:text-indigo-600 transition-colors text-sm">
-						<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-cyan-50 text-cyan-600">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
-								<rect x="2" y="4" width="20" height="16" rx="3"/>
-								<path d="m2 7 10 6 10-6"/>
-							</svg>
-						</span>
-						<span dir="ltr">info@mail.com</span>
-					</a>
-				</div>
-
-				<!-- ====== سلول شبکه‌های اجتماعی (نصف عرض) ====== -->
-				<div class="bento-cell p-4 flex flex-col items-center justify-center gap-3">
-					<span class="text-[.72rem] text-slate-400">ارتباط با ما</span>
-
-					<div class="flex items-center justify-center gap-2">
-
-						<!-- تلگرام -->
-						<a href="https://t.me/S0TOUDEH" target="_blank" rel="noopener"
-						   class="social-btn social-btn--telegram" aria-label="تلگرام" title="تلگرام">
-							<svg viewBox="0 0 24 24" fill="currentColor">
-								<path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
-							</svg>
-						</a>
-
-						<!-- واتس‌اپ -->
-						<a href="https://wa.me/989123456789" target="_blank" rel="noopener"
-						   class="social-btn social-btn--whatsapp" aria-label="واتس‌اپ" title="واتس‌اپ">
-							<svg viewBox="0 0 24 24" fill="currentColor">
-								<path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.42 5.83c0 4.54-3.7 8.23-8.25 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14 0-.31-.02-.47-.02s-.43.06-.66.31c-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/>
-							</svg>
-						</a>
-
-						<!-- بله -->
-						<a href="https://ble.ir/msotoudeh" target="_blank" rel="noopener"
-						   class="social-btn social-btn--bale" aria-label="بله" title="بله">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-								<path d="m9 12 2 2 4-4"/>
-							</svg>
-						</a>
-
+					<div class="contact-content" id="contactContent">
+						<div class="contact-inner">
+							<div class="contact-inner-pad">
+								<div class="grid grid-cols-2 gap-2 mb-2">
+									<a href="tel:09113330765" class="contact-item">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+										</svg>
+										<span dir="ltr">09123456789</span>
+									</a>
+									<a href="mailto:info@demo.com" class="contact-item">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+											<rect x="2" y="4" width="20" height="16" rx="3"/>
+											<path d="m2 7 10 6 10-6"/>
+										</svg>
+										<span dir="ltr">info@demo.com</span>
+									</a>
+								</div>
+								<div class="flex items-center justify-center gap-2 pt-1">
+									<a href="https://t.me/989123456789" target="_blank" rel="noopener" class="social-btn social-btn--telegram" aria-label="تلگرام" title="تلگرام">
+										<svg viewBox="0 0 24 24" fill="currentColor">
+											<path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+										</svg>
+									</a>
+									<a href="https://wa.me/9899123456789" target="_blank" rel="noopener" class="social-btn social-btn--whatsapp" aria-label="واتس‌اپ" title="واتس‌اپ">
+										<svg viewBox="0 0 24 24" fill="currentColor">
+											<path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.42 5.83c0 4.54-3.7 8.23-8.25 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14 0-.31-.02-.47-.02s-.43.06-.66.31c-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/>
+										</svg>
+									</a>
+									<a href="https://ble.ir/9123456789" target="_blank" rel="noopener" class="social-btn social-btn--bale" aria-label="بله" title="بله">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+											<path d="m9 12 2 2 4-4"/>
+										</svg>
+									</a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 
 			</div>
-
 		</div>
-
 	</main>
 
 	{literal}
@@ -626,54 +689,38 @@
 		var timeEl = document.getElementById('jalaliTime');
 
 		function pad2(n) { return (n < 10 ? '0' : '') + n; }
-
 		function toPersianDigits(str) {
 			var fa = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
 			return String(str).replace(/[0-9]/g, function (d) { return fa[+d]; });
 		}
-
 		function updateDateTime() {
 			var now = new Date();
 			var dateStr, timeStr;
-
 			try {
-				// استخراج تک‌تک اجزای تاریخ برای فرمت‌دهی دقیق
 				var parts = new Intl.DateTimeFormat('fa-IR', {
-					weekday: 'long',
-					year: 'numeric',
-					month: 'long',
-					day: 'numeric'
+					weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
 				}).formatToParts(now);
-
 				var weekday = '', day = '', month = '', year = '';
-				parts.forEach(function(p) {
+				parts.forEach(function (p) {
 					if (p.type === 'weekday') weekday = p.value;
 					if (p.type === 'day') day = p.value;
 					if (p.type === 'month') month = p.value;
 					if (p.type === 'year') year = p.value;
 				});
-
-				// چیدن کنار هم با فرمت درخواستی: امروز [روز هفته] ، [روز] [ماه] [سال]
 				dateStr = 'امروز ' + weekday + ' ، ' + day + ' ' + month + ' ' + year;
 			} catch (e) {
 				dateStr = 'امروز ' + toPersianDigits(now.toLocaleDateString());
 			}
-
 			try {
 				timeStr = new Intl.DateTimeFormat('fa-IR', {
-					hour: '2-digit',
-					minute: '2-digit',
-					second: '2-digit',
-					hour12: false
+					hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
 				}).format(now);
 			} catch (e) {
 				timeStr = toPersianDigits(pad2(now.getHours()) + ':' + pad2(now.getMinutes()) + ':' + pad2(now.getSeconds()));
 			}
-
-			if (dateEl) { dateEl.textContent = dateStr; }
-			if (timeEl) { timeEl.textContent = timeStr; }
+			if (dateEl) dateEl.textContent = dateStr;
+			if (timeEl) timeEl.textContent = timeStr;
 		}
-
 		updateDateTime();
 		setInterval(updateDateTime, 1000);
 
@@ -682,7 +729,6 @@
 		   ============================================================ */
 		var toggleBtn = document.getElementById('togglePass');
 		var passInput = document.getElementById('input_pass');
-
 		if (toggleBtn && passInput) {
 			toggleBtn.addEventListener('click', function () {
 				var show = passInput.type === 'password';
@@ -694,66 +740,248 @@
 		}
 
 		/* ============================================================
-		   ۳) اعتبارسنجی ساده قبل از ارسال
+		   ۳) کپچا - تولید + رسم + اعتبارسنجی
+		   ============================================================ */
+		var captchaCanvas = document.getElementById('captchaCanvas');
+		var captchaRefresh = document.getElementById('captchaRefresh');
+		var captchaInput = document.getElementById('input_captcha');
+		var captchaErrorMsg = document.getElementById('captchaErrorMsg');
+		var FA_DIGITS = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+
+		function normalizeDigits(str) {
+			return String(str || '')
+				.replace(/[۰-۹]/g, function (d) { return String.fromCharCode(d.charCodeAt(0) - 1776 + 48); })
+				.replace(/[٠-٩]/g, function (d) { return String.fromCharCode(d.charCodeAt(0) - 1632 + 48); });
+		}
+
+		function secureRandomDigit() {
+			if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+				var arr = new Uint32Array(1);
+				window.crypto.getRandomValues(arr);
+				return arr[0] % 10;
+			}
+			return Math.floor(Math.random() * 10);
+		}
+
+		function randomDigits() {
+			var d = [];
+			for (var i = 0; i < 4; i++) d.push(secureRandomDigit());
+			return d;
+		}
+
+		function drawCaptcha(digits) {
+			if (!captchaCanvas) return;
+			var ctx = captchaCanvas.getContext('2d');
+			var w = captchaCanvas.width;
+			var h = captchaCanvas.height;
+
+			var bgGrad = ctx.createLinearGradient(0, 0, w, h);
+			bgGrad.addColorStop(0, '#f8fafc');
+			bgGrad.addColorStop(1, '#eef2ff');
+			ctx.fillStyle = bgGrad;
+			ctx.fillRect(0, 0, w, h);
+
+			/* نقاط نویز */
+			for (var i = 0; i < 45; i++) {
+				ctx.fillStyle = 'rgba(' + Math.floor(Math.random() * 180) + ',' + Math.floor(Math.random() * 180) + ',' + Math.floor(Math.random() * 220) + ',0.45)';
+				ctx.beginPath();
+				ctx.arc(Math.random() * w, Math.random() * h, Math.random() * 1.2, 0, Math.PI * 2);
+				ctx.fill();
+			}
+
+			/* خطوط نویز کم‌رنگ */
+			for (var i2 = 0; i2 < 2; i2++) {
+				ctx.strokeStyle = 'rgba(99,102,241,' + (0.08 + Math.random() * 0.08) + ')';
+				ctx.lineWidth = 1;
+				ctx.beginPath();
+				ctx.moveTo(0, Math.random() * h);
+				ctx.bezierCurveTo(w * 0.3, Math.random() * h, w * 0.7, Math.random() * h, w, Math.random() * h);
+				ctx.stroke();
+			}
+
+			/* ارقام */
+			ctx.direction = 'ltr';
+			ctx.textAlign = 'center';
+			ctx.textBaseline = 'middle';
+			var pad = 12;
+			var step = (w - pad * 2) / 4;
+			var hues = [235, 265, 195, 320];
+
+			for (var j = 0; j < 4; j++) {
+				ctx.save();
+				ctx.translate(pad + step * j + step / 2, h / 2 + (Math.random() - 0.5) * 4);
+				ctx.rotate((Math.random() - 0.5) * 0.5);
+				var size = 18 + Math.random() * 5;
+				ctx.font = '900 ' + size + 'px Vazirmatn, Tahoma, sans-serif';
+				var hue = hues[j % 4] + (Math.random() * 30 - 15);
+				ctx.fillStyle = 'hsl(' + hue + ', 60%, 32%)';
+				ctx.fillText(FA_DIGITS[digits[j]], 0, 0);
+				ctx.restore();
+			}
+
+			/* خطوط نویز روی ارقام */
+			for (var k = 0; k < 4; k++) {
+				ctx.strokeStyle = 'rgba(' + Math.floor(Math.random() * 100) + ',' + Math.floor(Math.random() * 100) + ',' + Math.floor(Math.random() * 160) + ',' + (0.35 + Math.random() * 0.3) + ')';
+				ctx.lineWidth = 1 + Math.random() * 1.2;
+				ctx.beginPath();
+				ctx.moveTo(Math.random() * w * 0.3, Math.random() * h);
+				ctx.bezierCurveTo(w * 0.3, Math.random() * h, w * 0.7, Math.random() * h, w * 0.7 + Math.random() * w * 0.3, Math.random() * h);
+				ctx.stroke();
+			}
+
+			/* نقاط روی ارقام */
+			for (var m = 0; m < 15; m++) {
+				ctx.fillStyle = 'rgba(' + Math.floor(Math.random() * 120) + ',' + Math.floor(Math.random() * 120) + ',' + Math.floor(Math.random() * 160) + ',0.6)';
+				ctx.beginPath();
+				ctx.arc(Math.random() * w, Math.random() * h, Math.random() * 1.2, 0, Math.PI * 2);
+				ctx.fill();
+			}
+
+			captchaCanvas.dataset.value = digits.join('');
+		}
+
+		function refreshCaptcha() {
+			drawCaptcha(randomDigits());
+			if (captchaInput) {
+				captchaInput.value = '';
+				captchaInput.style.borderColor = '';
+				captchaInput.style.boxShadow = '';
+			}
+			if (captchaErrorMsg) captchaErrorMsg.classList.remove('show');
+		}
+
+		if (captchaCanvas) {
+			refreshCaptcha();
+
+			captchaCanvas.addEventListener('click', function () {
+				refreshCaptcha();
+				if (captchaInput) captchaInput.focus();
+			});
+
+			if (captchaRefresh) {
+				captchaRefresh.addEventListener('click', function () {
+					refreshCaptcha();
+					if (captchaInput) captchaInput.focus();
+				});
+			}
+
+			if (captchaInput) {
+				captchaInput.addEventListener('input', function () {
+					var cleaned = this.value.replace(/[^0-9۰-۹٠-٩]/g, '').slice(0, 4);
+					if (this.value !== cleaned) this.value = cleaned;
+					if (captchaErrorMsg) captchaErrorMsg.classList.remove('show');
+				});
+			}
+
+			if (document.fonts && document.fonts.ready) {
+				document.fonts.ready.then(function () {
+					var val = captchaCanvas.dataset.value;
+					if (val && val.length === 4) {
+						drawCaptcha(val.split('').map(Number));
+					}
+				});
+			}
+		}
+
+		function forceNewCaptchaOnLoad() {
+			if (captchaCanvas) refreshCaptcha();
+		}
+
+		window.addEventListener('load', function () {
+			if (!captchaCanvas || !captchaCanvas.dataset.value) forceNewCaptchaOnLoad();
+		});
+
+		window.addEventListener('pageshow', function (event) {
+			if (event.persisted) forceNewCaptchaOnLoad();
+		});
+
+		/* ============================================================
+		   ۴) اعتبارسنجی فرم
 		   ============================================================ */
 		var form = document.getElementById('loginForm');
 		if (form) {
 			form.addEventListener('submit', function (ev) {
 				var u = document.getElementById('input_user');
 				var p = document.getElementById('input_pass');
-				if (!u.value.trim() || !p.value) {
-					ev.preventDefault();
-					var target = !u.value.trim() ? u : p;
-					target.focus();
-					target.style.borderColor = '#ef4444';
-					target.style.boxShadow = '0 0 0 4px rgba(239,68,68,.14)';
+				var c = document.getElementById('input_captcha');
+				var hasError = false;
+				var firstBad = null;
+
+				function mark(el) {
+					el.style.borderColor = '#ef4444';
+					el.style.boxShadow = '0 0 0 3px rgba(239,68,68,.14)';
 					setTimeout(function () {
-						target.style.borderColor = '';
-						target.style.boxShadow = '';
+						el.style.borderColor = '';
+						el.style.boxShadow = '';
 					}, 1400);
+					if (!firstBad) firstBad = el;
+				}
+
+				if (!u.value.trim()) { mark(u); hasError = true; }
+				if (!p.value) { mark(p); hasError = true; }
+
+				if (c && captchaCanvas) {
+					var entered = normalizeDigits(c.value.trim());
+					var expected = captchaCanvas.dataset.value || '';
+					if (entered.length !== 4 || entered !== expected) {
+						mark(c);
+						if (captchaErrorMsg) {
+							captchaErrorMsg.classList.remove('show');
+							void captchaErrorMsg.offsetWidth;
+							captchaErrorMsg.classList.add('show');
+						}
+						drawCaptcha(randomDigits());
+						c.value = '';
+						hasError = true;
+						if (!firstBad) firstBad = c;
+					}
+				}
+
+				if (hasError) {
+					ev.preventDefault();
+					if (firstBad) firstBad.focus();
 				}
 			});
 		}
 
-	})();
-	
-			/* ============================================================
-		   ۴) حرکت المان‌های نوری با حرکت موس (Parallax)
+		/* ============================================================
+		   ۵) تاگل پنل ارتباط با ما
 		   ============================================================ */
-		(function() {
-			var blobs = document.querySelectorAll('.blob');
-			var mouseX = 0;
-			var mouseY = 0;
-			var targetX = 0;
-			var targetY = 0;
-			var speed = 0.08; // میزان نرمی حرکت (هرچه کمتر، نرم‌تر)
-
-			// شناسایی موقعیت موس
-			window.addEventListener('mousemove', function(e) {
-				// محاسبه فاصله موس از مرکز صفحه
-				targetX = (e.clientX - window.innerWidth / 2) * 0.15;
-				targetY = (e.clientY - window.innerHeight / 2) * 0.15;
+		var contactToggle = document.getElementById('contactToggle');
+		var contactContent = document.getElementById('contactContent');
+		if (contactToggle && contactContent) {
+			contactToggle.addEventListener('click', function () {
+				var isOpen = contactContent.classList.toggle('is-open');
+				contactToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 			});
+		}
 
-			// تابع انیمیشن برای حرکت نرم
-			function animateBlobs() {
-				// حرکت نرم به سمت هدف (Lerp)
-				mouseX += (targetX - mouseX) * speed;
-				mouseY += (targetY - mouseY) * speed;
+	})();
 
-				blobs.forEach(function(blob, index) {
-					// هر المان با سرعت متفاوتی حرکت می‌کند تا حس عمق (3D) ایجاد شود
-					var depth = (index + 1) * 0.4; 
-					blob.style.transform = 'translate(' + (mouseX * depth) + 'px, ' + (mouseY * depth) + 'px)';
-				});
+	/* ============================================================
+	   ۶) پارالاکس پس‌زمینه
+	   ============================================================ */
+	(function () {
+		var blobs = document.querySelectorAll('.blob');
+		var mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+		var speed = 0.08;
 
-				requestAnimationFrame(animateBlobs);
-			}
+		window.addEventListener('mousemove', function (e) {
+			targetX = (e.clientX - window.innerWidth / 2) * 0.15;
+			targetY = (e.clientY - window.innerHeight / 2) * 0.15;
+		});
 
-			// شروع انیمیشن
-			animateBlobs();
-		})();
-		
+		function animateBlobs() {
+			mouseX += (targetX - mouseX) * speed;
+			mouseY += (targetY - mouseY) * speed;
+			blobs.forEach(function (blob, index) {
+				var depth = (index + 1) * 0.4;
+				blob.style.transform = 'translate(' + (mouseX * depth) + 'px, ' + (mouseY * depth) + 'px)';
+			});
+			requestAnimationFrame(animateBlobs);
+		}
+		animateBlobs();
+	})();
 	</script>
 	{/literal}
 
